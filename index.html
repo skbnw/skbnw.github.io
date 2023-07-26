@@ -17,23 +17,34 @@
             background-color: #f0f0f0;
             padding: 20px;
         }
-        .wrapper .container {
+        .container {
             max-width: 1000px;
             margin: 0px auto;
             padding: 80px 0px;
             background-color: #fff;
             border-radius: 5px;
         }
-        .wrapper .content {
-            padding: 50px;
+        .content {
+            display: flex;
+            align-items: center;
+        }
+        .content-item {
+            flex: 1;
+            padding: 20px;
+        }
+        .image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+        .text {
             text-align: center;
         }
-        .wrapper .content .heading {
-            margin: 0px 0px 40px 0px;
+        .heading {
+            margin: 0px 0px 20px 0px;
             font-size: 24px;
             font-weight: normal;
-            text-align: center;
-            color: #333;
         }
     </style>
 </head>
@@ -41,8 +52,15 @@
     <section class="wrapper">
         <div class="container">
             <div class="content">
-                <h2 class="heading">MESSAGE</h2>
-                <p>原稿を書いて下さい　テキスト</p>
+                <div class="content-item">
+                    <img src="img/sample-2.jpg" class="image">
+                </div>    
+                <div class="content-item">
+                    <div class="text">
+                        <h2 class="heading">SERVICE</h2>
+                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
