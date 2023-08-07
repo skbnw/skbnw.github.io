@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>記事検索</title>
+    <title>人物検索</title>
+    <script>
+        function searchPeople() {
+            var keyword = document.getElementById('name').value;
+            fetch('people.json') // JSONファイルの名前は適切に変更してください
+                .then(response => response.json())
+                .then(data => {
+                    var resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '<h2>検索結果:</h2>';
+                    data.forEach(person => {
+                        if (person.name.includes(keyword)) {
+                            resultsDiv.innerHTML += '<p><strong>名前:</strong> ' + person.name + 
+                                                    ', <strong>性別:</strong> ' + person.sex + 
+                                                    ', <strong>生年月日:</strong> ' + new Date(person.birthday).toLocaleDateString() +
+                                                    ', <a href="' + person.link + '" target="_blank">プロフィールリンク</a></p>';
+                        }
+                    });
+                });
+        }
+    </script>
 </head>
 <body>
-    <h1>記事検索</h1>
-    <form action="/search" method="get">
-        <label for="kiji_title">記事タイトル:</label>
-        <input type="text" id="kiji_title" name="kiji_title" required>
-        <input type="submit" value="検索">
-    </form>
-    <!-- 検索結果の表示部分 -->
+    <h1>人物検索</h1>
+    <label for="name">名前:</label>
+    <input type="text" id="name">
+    <button onclick="searchPeople()">検索</button>
     <div id="results"></div>
 </body>
 </html>
