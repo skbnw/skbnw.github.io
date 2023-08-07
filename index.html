@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>記事検索</title>
+</head>
+<body>
+    <h1>記事検索</h1>
+    <form action="/search" method="get">
+        <label for="kiji_title">記事タイトル:</label>
+        <input type="text" id="kiji_title" name="kiji_title" required>
+        <input type="submit" value="検索">
+    </form>
+    <!-- 検索結果の表示部分 -->
+    <div id="results"></div>
+</body>
+</html>
