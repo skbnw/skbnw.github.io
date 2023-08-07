@@ -4,7 +4,7 @@
     <title>衆院議員データベース</title>
     <script>
         window.onload = function() {
-            fetch('https://skbnw.github.io/img/data/shugiin.json')
+            fetch('https://skbnw.github.io/data/shugiin.json')
                 .then(response => response.json())
                 .then(data => {
                     var randomData = data.sort(() => 0.5 - Math.random()).slice(0, 10); // ランダムに10人選ぶ
