@@ -14,7 +14,7 @@
 
         function searchPeople() {
             var keyword = document.getElementById('name').value;
-            fetch('https://skbnw.github.io/img/data/shugiin.json')
+            fetch('https://skbnw.github.io/data/shugiin.json')
                 .then(response => response.json())
                 .then(data => {
                     var searchData = data.filter(person => person.name.includes(keyword));
