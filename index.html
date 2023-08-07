@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>衆院議員 検索 2023年現在</title>
+    <title>人物検索</title>
     <script>
         window.onload = function() {
-            fetch('https://skbnw.github.io/data/shugiin.json') // 正しいURLを指定
+            fetch('https://skbnw.github.io/img/data/shugiin.json')
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data); // ここでコンソールにデータが表示されるはず
-                    
-                    var table = '<table><tr><th>名前</th><th>性別</th><th>生年月日</th><th>プロフィールリンク</th></tr>';
-                    for (var i = 0; i < 10 && i < data.length; i++) {
-                        var person = data[i];
-                        table += '<tr><td>' + person.name + '</td><td>' + person.sex + '</td><td>' + new Date(person.birthday).toLocaleDateString() + '</td><td><a href="' + person.link + '" target="_blank">リンク</a></td></tr>';
-                    }
-                    table += '</table>';
-                    document.getElementById('initialResults').innerHTML = table;
+                    var randomData = data.sort(() => 0.5 - Math.random()).slice(0, 10); // ランダムに10人選ぶ
+                    createTable(randomData, 'initialResults');
                 });
         };
 
         function searchPeople() {
-            // 以前のコードと同様に検索機能を実装
+            var keyword = document.getElementById('name').value;
+            fetch('https://skbnw.github.io/img/data/shugiin.json')
+                .then(response => response.json())
+                .then(data => {
+                    var searchData = data.filter(person => person.name.includes(keyword));
+                    createTable(searchData, 'results');
+                });
+        }
+
+        function createTable(data, elementId) {
+            var table = '<table><tr><th>名前</th><th>性別</th><th>生年月日</th><th>プロフィールリンク</th></tr>';
+            data.forEach(person => {
+                table += '<tr><td>' + person.name + '</td><td>' + person.sex + '</td><td>' + new Date(person.birthday).toLocaleDateString() + '</td><td><a href="' + person.link + '" target="_blank">リンク</a></td></tr>';
+            });
+            table += '</table>';
+            document.getElementById(elementId).innerHTML = table;
         }
     </script>
     <style>
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 80%;
+            font-size: 12px; /* フォントサイズを小さくする */
         }
         th, td {
             border: 1px solid black;
-            padding: 8px;
+            padding: 4px; /* パディングを小さくする */
             text-align: left;
         }
         th {
@@ -43,8 +52,9 @@
     <label for="name">名前:</label>
     <input type="text" id="name">
     <button onclick="searchPeople()">検索</button>
-    <h2>最初の10人:</h2>
+    <h2>ランダムに選ばれた10人:</h2>
     <div id="initialResults"></div>
+    <h2>検索結果:</h2>
     <div id="results"></div>
 </body>
 </html>
