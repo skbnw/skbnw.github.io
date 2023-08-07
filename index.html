@@ -5,7 +5,7 @@
     <script>
         function searchPeople() {
             var keyword = document.getElementById('name').value;
-            fetch('people.json') // JSONファイルの名前は適切に変更してください
+            fetch('data/shugiin.json') // フォルダdata内のshugiin.jsonを指定
                 .then(response => response.json())
                 .then(data => {
                     var resultsDiv = document.getElementById('results');
