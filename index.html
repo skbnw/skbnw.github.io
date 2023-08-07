@@ -21,4 +21,30 @@
 
         function searchPeople() {
             // 以前のコードと同様に検索機能を実装
-       
+        }
+    </script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>人物検索</h1>
+    <label for="name">名前:</label>
+    <input type="text" id="name">
+    <button onclick="searchPeople()">検索</button>
+    <h2>最初の10人:</h2>
+    <div id="initialResults"></div>
+    <div id="results"></div>
+</body>
+</html>
